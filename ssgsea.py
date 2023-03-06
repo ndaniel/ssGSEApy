@@ -47,7 +47,7 @@ def ssgsea(x, x_rows_genes, geneset, alpha = 0.25, scale = True, norm = False, m
     
         m = len(z[0]) # number of genes in the matrix
         # PG
-        pg = [[abs(e[1])**0.25 if e[0] in genes else 0 for e in v] for v in z]
+        pg = [[e[1]**0.25 if e[0] in genes else 0 for e in v] for v in z]
         png = [[1 if e==0 else 0 for e in v] for v in pg] # this is faster to be computed like this
         pg = [ list(map(lambda k,s: k/s,v,[sum(v)]*m)) for v in pg]
         png = [ list(map(lambda k,s: k/s,v,[sum(v)]*m)) for v in png]
@@ -65,7 +65,7 @@ def ssgsea(x, x_rows_genes, geneset, alpha = 0.25, scale = True, norm = False, m
     return score
 
 if __name__ == "__main__":
-    x=[5.5,6.3,5.4,7.3,5.9,6.8, 11.2, 6.4, 8.2,7.5]
+    x=[5.5,6.3,5.4,7.3,5.9,6.8,11.2,6.4,8.2,7.5]
     
     x=list(zip(x,x))
     x_rows=["Gene1","Gene2","Gene3","Gene4","Gene5","Gene6","Gene7","Gene8","Gene9","Gene10"]
